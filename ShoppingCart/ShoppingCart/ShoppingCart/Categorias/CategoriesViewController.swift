@@ -14,11 +14,11 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var category: CatalogType!
     
-    let womenCategory = [CategoriesItem(name: "women1", imageName: "Nylon Tricot Malibu One Piece", price: 880.00, add: false, type: .women), CategoriesItem(name: "women2", imageName: "Stretch Velour Long Sleeve Raglan Crew", price: 1071.00, add: false, type: .women), CategoriesItem(name: "women3", imageName: "Power Wash Fitted T-Shirt", price:421.00, add: false, type: .women), CategoriesItem(name: "women4", imageName: "The Easy Jean", price: 1300.00, add: false, type: .women)]
+    let womenCategory = [CategoriesItem(name: "Nylon Tricot Malibu One Piece" , imageName: "women1", price: 880.00, add: false, type: .women), CategoriesItem(name: "Stretch Velour Long Sleeve Raglan Crew", imageName: "women2", price: 1071.00, add: false, type: .women), CategoriesItem(name: "Power Wash Fitted T-Shirt", imageName: "women3", price:421.00, add: false, type: .women), CategoriesItem(name: "The Easy Jean", imageName: "women4", price: 1300.00, add: false, type: .women)]
     
-    let menCategory = [CategoriesItem(name: "men1", imageName: "California Fleece Regan", price: 688.00, add: false, type: .men), CategoriesItem(name: "men2", imageName: "Crinkle Nylon Team Jacket", price: 382.00, add: false, type: .men), CategoriesItem(name: "Basic Knit Cardigan", imageName: "", price: 994.00, add: false, type: .men), CategoriesItem(name: "men4", imageName: "Denim Rad Short", price: 918.00, add: false, type: .men)]
+    let menCategory = [CategoriesItem(name: "California Fleece Regan", imageName: "men1", price: 688.00, add: false, type: .men), CategoriesItem(name: "Crinkle Nylon Team Jacket", imageName: "men2", price: 382.00, add: false, type: .men), CategoriesItem(name: "Basic Knit Cardigan", imageName: "men3", price: 994.00, add: false, type: .men), CategoriesItem(name: "Denim Rad Short", imageName: "men4", price: 918.00, add: false, type: .men)]
     
-    let dogsCategory = [CategoriesItem(name: "dog1", imageName: "Sleeve Dog Raglan", price: 229.00, add: false, type: .dogs), CategoriesItem(name: "dog2", imageName: "Sleve Small Dog Raglan", price: 229.00, add: false, type: .dogs), CategoriesItem(name: "dog3", imageName: "Flex Fleece Small Dog Zip Hoodie", price: 344.00, add: false, type: .dogs), CategoriesItem(name: "dog4", imageName: "Flex Fleece Small Dog Zip Hoodie", price: 344.00, add: false, type: .dogs)]
+    let dogsCategory = [CategoriesItem(name: "Sleeve Dog Raglan", imageName: "dog1", price: 229.00, add: false, type: .dogs), CategoriesItem(name: "Sleve Small Dog Raglan", imageName: "dog2", price: 229.00, add: false, type: .dogs), CategoriesItem(name: "Flex Fleece Small Dog Zip Hoodie", imageName: "dog3", price: 344.00, add: false, type: .dogs), CategoriesItem(name: "Flex Fleece Small Dog Zip Hoodie", imageName: "dog4", price: 344.00, add: false, type: .dogs)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,19 +29,43 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return womenCategory.count
-        return womenCategory.count 
-        //return dogsCategory.count
+        switch category {
+        case .women?:
+            return womenCategory.count
+        case .men?:
+            return menCategory.count
+        case .dogs?:
+            return dogsCategory.count
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell", for: indexPath) as? CategoriesCellTableViewCell else { return UITableViewCell() }
         
-        cell.categoriesLabel.text = womenCategory[indexPath.row].name
-        cell.categoriesImageView.image = UIImage(named: womenCategory[indexPath.row].imageName)
-        cell.categoriesPrice.text = womenCategory[indexPath.row].name
-        cell.type = womenCategory[indexPath.row].type
-        return cell
+        switch category {
+        case .women?:
+            cell.categoriesLabel.text = womenCategory[indexPath.row].name
+            cell.categoriesImageView.image = UIImage(named: womenCategory[indexPath.row].imageName)
+            cell.categoriesPrice.text = "$\(womenCategory[indexPath.row].price) MXN"
+            cell.type = womenCategory[indexPath.row].type
+            return cell
+        case .men?:
+            cell.categoriesLabel.text = menCategory[indexPath.row].name
+            cell.categoriesImageView.image = UIImage(named: menCategory[indexPath.row].imageName)
+            cell.categoriesPrice.text = "$\(menCategory[indexPath.row].price) MXN"
+            cell.type = menCategory[indexPath.row].type
+            return cell
+        case .dogs?:
+            cell.categoriesLabel.text = dogsCategory[indexPath.row].name
+            cell.categoriesImageView.image = UIImage(named: dogsCategory[indexPath.row].imageName)
+            cell.categoriesPrice.text = "$\(dogsCategory[indexPath.row].price) MXN"
+            cell.type = dogsCategory[indexPath.row].type
+            return cell
+        default:
+            return cell
+        }
     }
     
     

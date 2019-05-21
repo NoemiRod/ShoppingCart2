@@ -14,7 +14,7 @@ struct CatalogItem {
     var type: CatalogType
 }
 
-enum CatalogType:String {
+enum CatalogType {
     case women
     case men
     case dogs
