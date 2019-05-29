@@ -25,6 +25,19 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         categoriesTableView.delegate = self
         categoriesTableView.dataSource = self
+        let carButton = UIBarButtonItem(image: UIImage(named: "car"), style: .done, target: self, action: #selector(showCar))
+        navigationItem.rightBarButtonItem = carButton
+    }
+    
+    //Funcion que se manda a llamar cuando presione el botón
+    @objc func showCar(){
+        //Se crea la referencia del storyboard
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        let cartVC = cartStoryboard.instantiateViewController(withIdentifier: "cartVC")
+        //Se crea un navigation controller
+        let nv = UINavigationController(rootViewController: cartVC)
+        //Se presenta el navigation controller
+        present(nv, animated: true, completion: nil)
         
     }
     
@@ -66,6 +79,10 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         default:
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     

@@ -50,5 +50,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             nextVC.category = categorySelected
         }
     }
+    
+    @IBAction func cartButton(_ sender: UIBarButtonItem) {
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        let cartVC = cartStoryboard.instantiateViewController(withIdentifier: "cartVC")
+        let nv = UINavigationController(rootViewController: cartVC)
+        present(nv, animated: true, completion: nil)
+    }
+    
 }
 

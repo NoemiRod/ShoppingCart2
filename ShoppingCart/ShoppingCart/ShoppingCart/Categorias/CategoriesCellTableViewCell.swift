@@ -20,12 +20,22 @@ class CategoriesCellTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        addButton.layer.cornerRadius = 5
+    
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func addAction(_ sender: UIButton) {
+        //Creamos el componente de la acción
+        let buttonActionSheet = UIAlertController(title: "Shopping Cart", message: "Do you want to add to your cart?", preferredStyle: .actionSheet)
+        //Creamos el botón
+        buttonActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        //Presentamos el botón
+        self.superview?.parentViewController?.present(buttonActionSheet, animated: true, completion: nil)
+        
+        buttonActionSheet.addAction(UIAlertAction(title: "Add", style: .default, handler: nil))
     }
+    
+    
 
 }
