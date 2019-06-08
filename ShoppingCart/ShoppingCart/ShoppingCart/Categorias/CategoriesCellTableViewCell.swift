@@ -16,6 +16,14 @@ class CategoriesCellTableViewCell: UITableViewCell {
     @IBOutlet weak var addButton: UIButton!
     
     var type: CatalogType!
+    var categoriesItem: CategoriesItem! {
+        didSet {
+            self.categoriesLabel.text = categoriesItem.name
+            self.categoriesImageView.image = UIImage(named: categoriesItem.imageName)
+            self.categoriesPrice.text = "$\(categoriesItem.price) MXN"
+            self.type = categoriesItem.type
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +41,9 @@ class CategoriesCellTableViewCell: UITableViewCell {
         //Presentamos el botón
         self.superview?.parentViewController?.present(buttonActionSheet, animated: true, completion: nil)
         
-        buttonActionSheet.addAction(UIAlertAction(title: "Add", style: .default, handler: nil))
+        buttonActionSheet.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
+            CartContainer.shared.addItem(item: self.categoriesItem)
+        }))
     }
     
     

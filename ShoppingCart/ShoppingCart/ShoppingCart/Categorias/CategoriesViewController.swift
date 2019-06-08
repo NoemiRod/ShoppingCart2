@@ -59,22 +59,16 @@ class CategoriesViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch category {
         case .women?:
-            cell.categoriesLabel.text = womenCategory[indexPath.row].name
-            cell.categoriesImageView.image = UIImage(named: womenCategory[indexPath.row].imageName)
-            cell.categoriesPrice.text = "$\(womenCategory[indexPath.row].price) MXN"
-            cell.type = womenCategory[indexPath.row].type
+            let category = womenCategory[indexPath.row]
+            cell.categoriesItem = category
             return cell
         case .men?:
-            cell.categoriesLabel.text = menCategory[indexPath.row].name
-            cell.categoriesImageView.image = UIImage(named: menCategory[indexPath.row].imageName)
-            cell.categoriesPrice.text = "$\(menCategory[indexPath.row].price) MXN"
-            cell.type = menCategory[indexPath.row].type
+            let category = menCategory[indexPath.row]
+            cell.categoriesItem = category
             return cell
         case .dogs?:
-            cell.categoriesLabel.text = dogsCategory[indexPath.row].name
-            cell.categoriesImageView.image = UIImage(named: dogsCategory[indexPath.row].imageName)
-            cell.categoriesPrice.text = "$\(dogsCategory[indexPath.row].price) MXN"
-            cell.type = dogsCategory[indexPath.row].type
+            let category = dogsCategory[indexPath.row]
+            cell.categoriesItem = category
             return cell
         default:
             return cell

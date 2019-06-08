@@ -2,7 +2,7 @@
 //  CartTableViewCell.swift
 //  ShoppingCart
 //
-//  Created by Noemí Rodríguewz on 5/29/19.
+//  Created by Noemí Rodríguez on 5/29/19.
 //  Copyright © 2019 iosLab. All rights reserved.
 //
 
@@ -10,6 +10,8 @@ import UIKit
 
 class CartTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
